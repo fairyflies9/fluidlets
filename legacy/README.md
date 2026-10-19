@@ -22,6 +22,6 @@ What the code does, as it stands:
 
 Running it safely: `run_particles.m` and `particlesHex.m` write `towers.txt` and `velocity_t_xyz_final.raw` into the current folder. Always run from a separate work folder with this folder added to the MATLAB path (`tests/legacy/matlab/` does this).
 
-## `glyco_Aug6/`
+## The `glyco_Aug6` snapshot
 
-LaTeX source, figures and PDF of the glycocalyx BMB submission (Miller et al., "Three-dimensional viscous flows through arrays of cylinders with applications to the endothelial surface layer"). It contains no code. It is the reference for the published results the `glycocalyx_towers` example should reproduce.
+The second snapshot named in DESIGN.md, `glyco_Aug6`, turned out to hold the LaTeX source, figures and PDF of the glycocalyx BMB submission (Miller et al., "Three-dimensional viscous flows through arrays of cylinders with applications to the endothelial surface layer") and no code. It is kept privately and is not part of this repository.

@@ -13,7 +13,7 @@ To regenerate the data, from `tests/legacy/matlab/` run `matlab -batch baseline_
 
 ## 1. Inventory and provenance
 
-- Only one code snapshot exists. `legacy/glyco_Aug6/` (the "possibly later snapshot" in DESIGN.md) holds the LaTeX source and figures of the BMB submission and no code.
+- Only one code snapshot exists. `glyco_Aug6` (the "possibly later snapshot" in DESIGN.md) holds the LaTeX source and figures of the BMB submission and no code; it is kept privately and is not in this repository.
 - Authorship: CUDA comments are signed `ksl` and dated 2009–2010; the SDC driver and `makesig.m` are Michael Minion's pedagogical SDC code (2005).
 - The CUDA paths are unrunnable here and are treated as documentation.
 

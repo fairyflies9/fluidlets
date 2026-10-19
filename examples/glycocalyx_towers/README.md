@@ -30,6 +30,6 @@ Geometry: `towers.txt` lists one tower per row as `type x y z height levels` (ty
 
 ## References
 
-- Miller et al., *Three-dimensional viscous flows through arrays of cylinders with applications to the endothelial surface layer* (glycocalyx paper; source in `legacy/glyco_Aug6/`).
+- Miller et al., *Three-dimensional viscous flows through arrays of cylinders with applications to the endothelial surface layer* (the glycocalyx paper this code was written for).
 - Cortez, Fauci & Medovikov (2005), Phys. Fluids 17, 031504.
 - Ainley, Durkin, Embid, Boindala & Cortez (2008), J. Comput. Phys. 227, 4600.
