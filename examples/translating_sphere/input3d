@@ -10,7 +10,7 @@ kernel      = stokeslet
 problem     = resistance
 radius      = 1.0
 patches_n   = 12 24              % n x n points on each of the 6 cube faces (paper also uses 36, 48)
-eps         = 0.1 0.05 0.01      % blob widths, the rows of the paper's Table II
+eps_sweep   = 0.1 0.05 0.01      % blob widths to try: the rows of the paper's Table II
 gmres_tol   = 1e-8
 }
 

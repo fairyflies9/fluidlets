@@ -41,7 +41,7 @@ print("Sphere resistance coefficients (exact T33 = 18.850, R33 = 25.133)")
 print("   n  points    eps     T33      R33   R33 (paper)")
 for n in np.atleast_1d(p["patches_n"]).astype(int):
     X = a * cube_sphere(n)
-    for eps in np.atleast_1d(p["eps"]):
+    for eps in np.atleast_1d(p["eps_sweep"]):
         f_trans = solve(X, np.tile(ez, (len(X), 1)), eps)          # translate with U = e_z
         f_rot = solve(X, np.cross(ez, X), eps)                      # rotate with Omega = e_z
         T33 = f_trans[:, 2].sum()

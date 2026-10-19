@@ -2,7 +2,7 @@
 import numpy as np
 
 import fluidlets as fl
-from fluidlets.core import assemble_nearest, nearest_neighbours
+from fluidlets.core import assemble_nearest, nearest_neighbors
 from fluidlets.geometry import cube_sphere
 from fluidlets.swimming import SwimmerShape, swim, swimming_problem
 
@@ -11,7 +11,7 @@ K = fl.Stokeslet3D()
 
 def test_nearest_with_identical_points_is_ordinary_assembly():
     X = cube_sphere(4)
-    nn = nearest_neighbours(X, X)
+    nn = nearest_neighbors(X, X)
     assert np.array_equal(nn, np.arange(len(X)))
     assert np.allclose(assemble_nearest(K, X, X, nn, len(X), 0.1), fl.assemble(K, X, X, 0.1), rtol=1e-14)
 
@@ -19,7 +19,7 @@ def test_nearest_with_identical_points_is_ordinary_assembly():
 def test_nearest_assembly_sums_grouped_quadrature():
     x = cube_sphere(3)                      # coarse force points
     Xq = cube_sphere(9)                     # fine quadrature points
-    nn = nearest_neighbours(Xq, x)
+    nn = nearest_neighbors(Xq, x)
     A = assemble_nearest(K, x, Xq, nn, len(x), 0.05)
     f = np.random.default_rng(0).normal(size=(len(x), 3))
     direct = fl.evaluate(K, x, Xq, f[nn], 0.05)      # every quadrature point carries its group's force

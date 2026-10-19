@@ -89,8 +89,12 @@ def block(x, x0, eps, out):
             out[i, j] += tmp[i, j]
 
 
-class Stokeslet3DWall(VectorKernel):
-    """Regularized Stokeslet above a no-slip wall at z = 0 (sources need z > 0)."""
+class WallStokeslet3D(VectorKernel):
+    """Regularized Stokeslet above a no-slip wall at z = 0 (sources need z > 0).
+
+    The regularized version of Blake's (1971) wall solution, sometimes called
+    a regularized "Blakelet".
+    """
 
     dim = 3
     block = staticmethod(block)

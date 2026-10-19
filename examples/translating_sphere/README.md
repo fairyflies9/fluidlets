@@ -29,7 +29,7 @@ About 25 seconds. It prints the table and writes `viz/lag.vtp` (surface points w
 |---|---|
 | `radius`, `mu` | sphere radius and viscosity |
 | `patches_n` | grid points per cube-face edge; the sphere has 6 n² points |
-| `eps` | blob widths to try |
+| `eps_sweep` | blob widths to try (each run uses one; `eps` alone always means a single blob width) |
 | `gmres_tol` | relative tolerance of the iterative solve |
 | `vtk_n`, `vtk_eps` | which case to write to VTK |
 | `grid_x`, `grid_y`, `grid_z` | evaluation grid for output: min, max, number of points |

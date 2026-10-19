@@ -26,11 +26,11 @@ from typing import Callable
 import numpy as np
 from scipy.integrate import solve_ivp
 
-from .core.assemble import assemble_nearest, nearest_neighbours
+from .core.assemble import assemble_nearest, nearest_neighbors
 from .kernels import Stokeslet3D
 
 
-def cross_matrix(v: np.ndarray) -> np.ndarray:
+def _cross_matrix(v: np.ndarray) -> np.ndarray:
     """(N, 3, 3) matrices C with C @ w = v x w for each row v."""
     v = np.atleast_2d(v)
     C = np.zeros((len(v), 3, 3))
@@ -84,19 +84,19 @@ def swimming_problem(shape: SwimmerShape, x0, B, eps, mu=1.0, kernel=None,
     X = x0 + shape.X @ B.T
     v = shape.v @ B.T
     if nearest is None:
-        nearest = nearest_neighbours(X, x)
+        nearest = nearest_neighbors(X, x)
     N = len(x)
 
     A = np.zeros((3 * N + 6, 3 * N + 6))
     A[:3 * N, :3 * N] = assemble_nearest(kernel, x, X, nearest, N, eps, mu)
     A[:3 * N, 3 * N:3 * N + 3] = -np.tile(np.eye(3), (N, 1))               # -U
-    A[:3 * N, 3 * N + 3:] = cross_matrix(x - x0).reshape(3 * N, 3)          # -Omega x r = r x Omega
+    A[:3 * N, 3 * N + 3:] = _cross_matrix(x - x0).reshape(3 * N, 3)          # -Omega x r = r x Omega
     # Each force point stands for every quadrature point that maps to it.
     count = np.bincount(nearest, minlength=N).astype(float)
     Xsum = np.zeros((N, 3))
     np.add.at(Xsum, nearest, X)
     A[3 * N:3 * N + 3, :3 * N] = np.kron(count, np.eye(3))                  # net force
-    A[3 * N + 3:, :3 * N] = np.hstack(list(cross_matrix(Xsum)))              # net torque
+    A[3 * N + 3:, :3 * N] = np.hstack(list(_cross_matrix(Xsum)))              # net torque
     rhs = np.concatenate([v.ravel(), np.zeros(6)])
     sol = np.linalg.solve(A, rhs)
     return SwimState(sol[3 * N:3 * N + 3], sol[3 * N + 3:], sol[:3 * N].reshape(N, 3), x, X, nearest)
@@ -131,7 +131,7 @@ def swim(shape_at: Callable[[float], SwimmerShape], t_span, eps, mu=1.0, x0=(0, 
     nearest = None
     if fixed_nearest:
         s0 = shape_at(t_span[0])
-        nearest = nearest_neighbours(s0.X, s0.x)
+        nearest = nearest_neighbors(s0.X, s0.x)
 
     def rhs(t, z):
         b1, b2 = z[3:6], z[6:9]

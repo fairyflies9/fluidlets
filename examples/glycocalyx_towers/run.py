@@ -23,7 +23,7 @@ vertex_file = here / f"{name}.vertex"
 if not vertex_file.exists():
     write_vertex(vertex_file, towers_from_table(np.loadtxt(here / "towers.txt")))
 X = read_vertex(vertex_file)
-kernel = fl.Stokeslet3DWall() if p["wall"] == "z0" else fl.Stokeslet3D()
+kernel = fl.WallStokeslet3D() if p["wall"] == "z0" else fl.Stokeslet3D()
 
 
 def background(x):

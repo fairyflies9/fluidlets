@@ -14,7 +14,7 @@ import fluidlets as fl
 
 DATA = Path(__file__).parent / "data"
 LEGACY = Path(__file__).parents[2] / "legacy" / "sdc_cuda3"
-WALL = fl.Stokeslet3DWall()
+WALL = fl.WallStokeslet3D()
 DELTA = 0.5                     # blob width in run_particles.m
 
 
