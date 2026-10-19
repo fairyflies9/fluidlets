@@ -1,0 +1,38 @@
+% Model biflagellate alga swimming in an unbounded fluid:
+% Gallagher & Smith, Phys. Rev. Fluids 3, 053101 (2018), Sec. V A.
+% Lengths are in flagellar lengths, time in units where one beat lasts 2 pi.
+
+Fluid_Parameters {
+mu          = 1.0
+}
+
+Swimmer {
+head_axes   = 0.5 0.6 0.6     % ellipsoidal cell body, semi-axes a1 a2 a3
+insertion_angle = 30          % degrees from the forward (x2) axis; the paper's Table II uses 30, its Fig. 1 uses 36
+n_head      = 4               % force points: 6 n^2 on the body (96)
+n_head_quad = 10              % quadrature points on the body (600)
+n_flag      = 40              % force points per flagellum
+n_flag_quad = 400             % quadrature points per flagellum
+beat_variant = paper          % paper: Eqs. 29-30 as written; authors_code: the published code's shape (see README)
+}
+
+Solver {
+dim         = 3
+kernel      = stokeslet
+problem     = free_swimming
+eps         = 0.0125          % flagellar radius / length = 0.25/20
+beats       = 1
+ode_rtol    = 1e-6
+}
+
+Output_Info {
+frames_per_beat = 20
+flow_frames = 0 7 13          % frames at which to write the flow field
+grid_x      = -1.5 1.5 61
+grid_y      = -1.5 2.0 71
+grid_z      = 0 0 1
+}
+
+Lag_Name {
+string_name = "biflagellate"
+}
