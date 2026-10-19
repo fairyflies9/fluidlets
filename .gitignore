@@ -13,3 +13,6 @@ tests/legacy/matlab/work/
 
 # Windows thumbnail cache (one is inside legacy/sdc_cuda3; left in place, not tracked)
 Thumbs.db
+
+# kept privately, never published
+legacy/glyco_Aug6/
