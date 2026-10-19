@@ -103,3 +103,38 @@ def test_sphere_drag_near_wall_matches_reflections():
     # checking H/a < 5 needs Brenner's (1961) exact values.
     far = d["H_list"] >= 5
     assert np.allclose(perp[far], lorentz[far], rtol=0.01)
+
+
+# --- Step 5: the legacy SDC driver ------------------------------------------
+
+def test_legacy_sdc_is_first_order():
+    # Documents a legacy bug (lagged spring forces, stale fdiff); see
+    # docs/legacy_verification.md. Nominal order is 9.
+    d = load("sdc_order.mat")
+    assert np.all(np.abs(d["order"] - 1) < 0.1)
+
+
+# --- Step 6: glycocalyx tower baseline ---------------------------------------
+
+LEGACY = Path(__file__).parents[2] / "legacy" / "sdc_cuda3"
+
+
+def test_tower_rerun_reproduces_stored_cuda_grid():
+    d = load("towers.mat")
+    stored = np.fromfile(LEGACY / "velocity_t_xyz_final.raw", "<f4")
+    rerun = d["grid_new"].astype(np.float64)
+    assert np.linalg.norm(rerun - stored) / np.linalg.norm(stored) < 1e-6   # float32 CUDA
+
+
+def test_towers_held_fixed_by_gmres_forces():
+    d = load("towers.mat")
+    assert d["resid"] < 1e-6
+    assert np.array_equal(d["xend"], d["x0"])          # particlesHex never moves them
+    n = d["x0"].size // 3
+    X = d["x0"].reshape(3, n).T
+    F = d["Forces"].reshape(3, n).T
+    on_wall = X[:, 2] == 0
+    assert np.abs(F[on_wall]).max() < 1e-10            # undetermined, left at GMRES's zero guess
+    drag = [F[k * 147:(k + 1) * 147, 0].sum() for k in range(3)]
+    assert np.isclose(drag[0], drag[2], rtol=1e-6)     # outer towers mirror each other
+    assert abs(drag[1]) < abs(drag[0])                 # middle tower is shielded
