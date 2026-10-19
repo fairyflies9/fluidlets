@@ -51,15 +51,15 @@ The error falls at first order in the spacing, as expected with ε tied to the s
 
 Near the wall (N = 400), drag relative to the same sphere in free space:
 
-| H/a | parallel | Faxén series | perpendicular | Lorentz series |
+| H/a | parallel | Faxén series | perpendicular | Brenner (exact) |
 |---|---|---|---|---|
-| 1.5 | 1.610 | 1.615 | 3.272 | 2.512 |
-| 2 | 1.391 | 1.386 | 2.157 | 2.000 |
-| 3 | 1.232 | 1.227 | 1.583 | 1.554 |
-| 5 | 1.128 | 1.126 | 1.291 | 1.284 |
+| 1.5 | 1.610 | 1.615 | 3.272 | 3.205 |
+| 2 | 1.391 | 1.386 | 2.157 | 2.126 |
+| 3 | 1.232 | 1.227 | 1.583 | 1.569 |
+| 5 | 1.128 | 1.126 | 1.291 | 1.285 |
 | 10 | 1.061 | 1.060 | 1.129 | 1.126 |
 
-Parallel motion agrees with Faxén to within 0.4% at every height. Perpendicular motion agrees with Lorentz's two-term series to within 0.6% for H/a ≥ 5; closer in the series itself is inaccurate. **Open item:** compare H/a ≤ 3 with Brenner's (1961) exact result.
+Parallel motion agrees with Faxén to within 0.4% at every height. Perpendicular motion is within 2.1% of Brenner's (1961) exact series at H/a = 1.5 and 0.2% at H/a = 10, always slightly high, which matches what Ainley et al. (2008, Table 2) report for coarse discretizations. Brenner's series is taken from Ainley et al., Eq. 22, and implemented in `fluidlets.analytic.brenner_wall_drag`; with d/a = cosh α it reproduces every reference value in their Table 2.
 
 The matrix-equals-matvec check in DESIGN.md (step 4) belongs to Phase 1, when there is an assembled Python matrix to compare.
 

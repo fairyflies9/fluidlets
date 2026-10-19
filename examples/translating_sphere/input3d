@@ -1,0 +1,27 @@
+% Translating and rotating sphere: Cortez, Fauci & Medovikov (2005), Sec. IV.
+
+Fluid_Parameters {
+mu          = 1.0
+}
+
+Solver {
+dim         = 3
+kernel      = stokeslet
+problem     = resistance
+radius      = 1.0
+patches_n   = 12 24              % n x n points on each of the 6 cube faces (paper also uses 36, 48)
+eps         = 0.1 0.05 0.01      % blob widths, the rows of the paper's Table II
+gmres_tol   = 1e-8
+}
+
+Output_Info {
+vtk_n       = 24                 % case written to VTK
+vtk_eps     = 0.05
+grid_x      = -3 3 61
+grid_y      = 0 0 1
+grid_z      = -3 3 61
+}
+
+Lag_Name {
+string_name = "translating_sphere"
+}

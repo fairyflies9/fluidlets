@@ -28,3 +28,25 @@ def ring_sphere(n_phi: int, radius: float = 1.0, center=(0.0, 0.0, 0.0)) -> np.n
         pts.append(np.c_[np.sin(phi) * np.cos(theta), np.sin(phi) * np.sin(theta),
                          np.full(n_k, np.cos(phi))])
     return radius * np.vstack(pts) + np.asarray(center, float)
+
+
+def cube_sphere(n: int, radius: float = 1.0, center=(0.0, 0.0, 0.0)) -> np.ndarray:
+    """Six-patch sphere, as in Cortez, Fauci & Medovikov (2005), Sec. IV.
+
+    Each face of the cube [-1, 1]^3 carries an n x n uniform grid, projected
+    radially onto the sphere. Cell-centred grid points are used so no point
+    is shared between faces, giving the 6 n^2 points ("6 x n x n") of the
+    paper's Table II. Grid size ~ 2 pi a / (4 n).
+    """
+    s = np.linspace(-1.0 + 1.0 / n, 1.0 - 1.0 / n, n)
+    A, B = np.meshgrid(s, s, indexing="ij")
+    A, B, one = A.ravel(), B.ravel(), np.ones(n * n)
+    faces = []
+    for axis in range(3):
+        for sign in (-1.0, 1.0):
+            cols = [A, B]
+            cols.insert(axis, sign * one)
+            faces.append(np.c_[cols[0], cols[1], cols[2]])
+    cube = np.vstack(faces)
+    unit = cube / np.linalg.norm(cube, axis=1)[:, None]
+    return radius * unit + np.asarray(center, float)

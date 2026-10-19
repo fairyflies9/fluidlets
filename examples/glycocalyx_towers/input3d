@@ -1,0 +1,27 @@
+% Glycocalyx core-protein towers held fixed in a shear flow above a wall.
+% Same setup as legacy/sdc_cuda3/run_particles.m (units: mm, mu = 1).
+
+Fluid_Parameters {
+mu          = 1.0
+background  = shear          % u = shear_rate * z in the x direction
+shear_rate  = 0.1
+}
+
+Solver {
+dim         = 3
+kernel      = stokeslet
+wall        = z0             % no-slip plane wall at z = 0 (image system)
+problem     = resistance     % towers held fixed: solve for the forces
+eps         = 0.5            % blob width (legacy "deltas")
+gmres_tol   = 1e-10
+}
+
+Output_Info {
+grid_x      = -1 8 32        % evaluation grid for VTK output only: min max points
+grid_y      = -5 25 32
+grid_z      = 0 20 32
+}
+
+Lag_Name {
+string_name = "glycocalyx_towers"
+}

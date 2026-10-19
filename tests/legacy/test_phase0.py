@@ -92,17 +92,17 @@ def test_sphere_drag_converges_to_stokes():
 
 
 def test_sphere_drag_near_wall_matches_reflections():
+    from fluidlets.analytic import brenner_wall_drag
     d = load("sphere_drag.mat")
     s = 1 / d["H_list"]
     faxen = 1 / (1 - 9 / 16 * s + s**3 / 8 - 45 / 256 * s**4 - s**5 / 16)
-    lorentz = 1 / (1 - 9 / 8 * s + s**3 / 2)
     par = d["F_par"] / d["F_free_N"]
     perp = d["F_perp"] / d["F_free_N"]
     assert np.allclose(par, faxen, rtol=0.005)
-    # The two-term perpendicular series is poor closer in (1.8% off at H/a = 3);
-    # checking H/a < 5 needs Brenner's (1961) exact values.
-    far = d["H_list"] >= 5
-    assert np.allclose(perp[far], lorentz[far], rtol=0.01)
+    # Brenner's exact series: within 2.1% at H/a = 1.5 (N = 400), improving with distance
+    rel = perp / brenner_wall_drag(d["H_list"]) - 1
+    assert np.all((rel > 0) & (rel < 0.025))
+    assert np.all(np.diff(rel) < 0)
 
 
 # --- Step 5: the legacy SDC driver ------------------------------------------

@@ -2,15 +2,16 @@
 from __future__ import annotations
 
 import numpy as np
-from numba import njit
+from numba import njit, prange
 
 from ._common import blob_widths, field_dtype, points
 
 
-@njit
+@njit(parallel=True)
 def _apply(targets, sources, eps, block, p, q, strengths, out):
-    G = np.empty((p, q))
-    for i in range(targets.shape[0]):
+    # each target row is independent, so rows run in parallel
+    for i in prange(targets.shape[0]):
+        G = np.empty((p, q))
         for j in range(sources.shape[0]):
             block(targets[i], sources[j], eps[j], G)
             for a in range(p):

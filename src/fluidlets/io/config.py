@@ -31,7 +31,7 @@ def _value(text: str):
 def read_input(path) -> dict:
     """Read an input2d/input3d file into a dict of parameters."""
     params = {}
-    for raw in Path(path).read_text().splitlines():
+    for raw in Path(path).read_text(encoding="utf-8").splitlines():
         line = re.split(r"[%#]", raw, maxsplit=1)[0].strip()
         if not line or line.endswith("{") or line == "}" or "=" not in line:
             continue
