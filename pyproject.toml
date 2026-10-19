@@ -1,0 +1,24 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "fluidlets"
+version = "0.0.1"
+description = "Regularized fundamental solutions (Stokeslets, Brinkmanlets, Oseenlets, and more) for biofluids, in the spirit of IB2d."
+readme = "README.md"
+license = "BSD-3-Clause"
+requires-python = ">=3.10"
+authors = [{ name = "Laura A. Miller" }]
+dependencies = ["numpy>=1.23"]
+keywords = ["regularized stokeslets", "stokes flow", "biofluids", "immersed boundary", "IB2d"]
+classifiers = [
+  "Development Status :: 1 - Planning",
+  "Intended Audience :: Science/Research",
+  "Intended Audience :: Education",
+  "Programming Language :: Python :: 3",
+  "Topic :: Scientific/Engineering :: Physics",
+]
+
+[project.urls]
+Homepage = "https://github.com/fairyflies9/fluidlets"

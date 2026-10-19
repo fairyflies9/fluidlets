@@ -1,0 +1,15 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ipynb_checkpoints/
+build/
+dist/
+.venv/
+
+# outputs from examples and legacy runs
+viz/
+tests/legacy/matlab/work/
+
+# Windows thumbnail cache (one is inside legacy/sdc_cuda3; left in place, not tracked)
+Thumbs.db
