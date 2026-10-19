@@ -10,7 +10,7 @@ readme = "README.md"
 license = "BSD-3-Clause"
 requires-python = ">=3.10"
 authors = [{ name = "Laura A. Miller" }]
-dependencies = ["numpy>=1.23"]
+dependencies = ["numpy>=1.23", "numba>=0.59", "scipy>=1.12"]
 keywords = ["regularized stokeslets", "stokes flow", "biofluids", "immersed boundary", "IB2d"]
 classifiers = [
   "Development Status :: 1 - Planning",
