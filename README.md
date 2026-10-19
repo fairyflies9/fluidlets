@@ -1,12 +1,13 @@
 # Fluidlets
 
-Regularized Stokeslets in Python, for flows at very small scales, where viscosity wins: cilia, glycocalyx brushes, swimming cells. The code is meant to be read and taught from, in the spirit of IB2d: IB2d-style input files, output you can open in ParaView, and worked examples that reproduce published results.
+Regularized Stokeslets and Brinkmanlets in Python, for flows at very small scales, where viscosity wins: cilia, glycocalyx brushes, swimming cells, and flow through porous media. The code is meant to be read and taught from, in the spirit of IB2d: IB2d-style input files, output you can open in ParaView, and worked examples that reproduce published results.
 
 ![A model alga swimming with two flagella; tracer particles show the flow](docs/img/biflagellate_3d.gif)
 
 ## What it does now
 
 - **3D regularized Stokeslets** (Cortez, Fauci & Medovikov 2005), with the **exact image system for a no-slip wall** (Ainley et al. 2008).
+- **3D regularized Brinkmanlets** for flow through a sparse porous medium (Cortez, Cummins, Leiderman & Varela 2010); with α = 0 they reduce exactly to the Stokeslets.
 - **Resistance problems:** you set the velocity on a structure, and Fluidlets solves for the forces, using dense LU or matrix-free GMRES.
 - **Free swimming:** a cell that moves by changing its shape, with zero net force and torque, using the nearest-neighbour discretization of Gallagher & Smith (2018).
 - **Fast, parallel kernel sums** with Numba, for real or complex viscosity.
@@ -21,6 +22,7 @@ Each folder in `examples/` runs with `python run.py` and explains the physics in
 | `glycocalyx_towers` | protein towers held fixed in shear flow above a wall | the original 2010 UNC code, to 10⁻⁷ |
 | `translating_sphere` | drag and torque on a sphere | Cortez, Fauci & Medovikov (2005), Table II |
 | `sphere_near_wall` | how a wall raises the drag on a sphere | Ainley et al. (2008), Tables 1–2 |
+| `sphere_in_brinkman` | drag, torque and flow of a sphere in a porous medium | Cortez, Cummins, Leiderman & Varela (2010), Tables 1–2 and Fig. 4 |
 | `biflagellate_swimmer` | a model alga swimming with two flagella, with movies | Gallagher & Smith (2018), Table II |
 
 Tutorial notebooks are in `tutorials/`.
@@ -49,7 +51,7 @@ print(u)                                                 # the velocity on the w
 
 ## Coming next
 
-The plan is in `DESIGN.md`: 2D Stokeslets and Brinkmanlets (porous media), Oseenlets (a little inertia), electrostatics coupled to flow (charged pollen landing on flowers), vortex sheets for flapping and flexible plates, viscoelastic and shear-thinning fluids, and more tutorials and course modules.
+The plan is in `DESIGN.md`: 2D Stokeslets and Brinkmanlets, Brinkmanlets near a wall, Oseenlets (a little inertia), electrostatics coupled to flow (charged pollen landing on flowers), vortex sheets for flapping and flexible plates, viscoelastic and shear-thinning fluids, and more tutorials and course modules.
 
 ## Where it came from
 

@@ -2,5 +2,6 @@
 from .base import Kernel, VectorKernel
 from .stokeslet3d import Stokeslet3D
 from .images import WallStokeslet3D
+from .brinkmanlet3d import Brinkmanlet3D
 
-__all__ = ["Kernel", "VectorKernel", "Stokeslet3D", "WallStokeslet3D"]
+__all__ = ["Kernel", "VectorKernel", "Stokeslet3D", "WallStokeslet3D", "Brinkmanlet3D"]

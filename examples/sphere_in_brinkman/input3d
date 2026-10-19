@@ -1,0 +1,29 @@
+% A sphere in a Brinkman fluid (porous medium): Cortez, Cummins, Leiderman &
+% Varela, J. Comput. Phys. 229 (2010) 7609, Secs. 3.1-3.2.
+
+Fluid_Parameters {
+mu          = 1.0
+alpha_list  = 0.1 1 5 10 20     % inverse screening lengths to try (alpha = 0 is Stokes flow)
+}
+
+Solver {
+dim         = 3
+kernel      = brinkmanlet
+problem     = resistance
+radius      = 1.0
+n_points    = 7996              % points on the sphere, as in the paper
+eps_mode    = paper             % paper: the paper's eps for each alpha (Tables 1-2); ratio: eps = eps_ratio * h
+eps_ratio   = 0.4               % used when eps_mode = ratio; h = sqrt(4 pi a^2 / N)
+tune_eps    = 0                 % 1 = also find the eps that makes the drag exact on these points (slow)
+}
+
+Output_Info {
+vtk_alphas  = 0.1 20            % write the flow around the sphere for these alphas
+grid_x      = -3 3 61
+grid_y      = 0 0 1
+grid_z      = -3 3 61
+}
+
+Lag_Name {
+string_name = "sphere_in_brinkman"
+}
