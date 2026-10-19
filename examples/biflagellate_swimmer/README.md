@@ -30,6 +30,24 @@ About 35 seconds for one beat. It writes to `viz/`:
 - `eul.pvd` (with `eul.NNNN.vtr`): the flow in the plane x₃ = 0 at the start, one-third and two-thirds of the beat. Colour by `speed`, or add a Stream Tracer.
 - `trajectory.csv`: the position of the cell centre over time.
 
+## Movies
+
+Two optional scripts make animated GIFs of the cell swimming for two beats. They need packages Fluidlets itself does not, so they are kept apart from `run.py`.
+
+```bash
+python movie_2d.py
+```
+
+About 3 minutes; needs matplotlib. Writes `viz/biflagellate.gif`: the beat plane seen from above, with flow speed (blue), streamlines, the cell outline, and the path of its centre (red).
+
+```bash
+python movie_3d.py
+```
+
+About 7 minutes; needs ParaView (for `pvpython`) and Pillow. Writes `viz/biflagellate_3d.gif`: the cell body and flagella in 3D, a faint speed slice through the beat plane, and 500 passive tracer particles with short trails, coloured by speed, while the camera orbits the swimming axis. The tracers are moved with the exact time-dependent flow (the Stokeslet sum at each instant, midpoint steps six times per frame), so their back-and-forth over each beat is real. The rendering is in `render_3d.py`; after editing it, `python movie_3d.py --render-only` redraws the saved frames in seconds.
+
+The swimmer model itself (body, beat, discretization) is in `biflagellate.py`, shared by `run.py` and both movie scripts.
+
 ## Parameters (`input3d`)
 
 | Key | Meaning |
