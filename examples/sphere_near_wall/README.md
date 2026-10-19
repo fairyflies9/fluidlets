@@ -6,7 +6,7 @@ Here a sphere of radius 0.1 is covered with rings of regularized Stokeslets and 
 
 This reproduces Section 5.4 of Ainley, Durkin, Embid, Boindala & Cortez (2008). The script prints, side by side, our result, the paper's result for the same discretization, and the exact value: O'Neill (1964) for parallel motion, and Brenner's (1961) series or Cooley & O'Neill's near-contact formula for normal motion (`fluidlets.analytic`). For d/a ≥ 1.54 our numbers match the paper's tables to all four printed digits, for both discretizations. Closer to the wall they agree to within 0.3%; there the gap is smaller than the point spacing h, the linear system is badly conditioned, and both computations over- or under-shoot the exact drag until the surface is refined.
 
-The wall distances are d/a = cosh α for α = 10, 3, 2, 1, 0.5, 0.3, 0.1, the values in the paper's tables.
+The wall distances are d/a = cosh α (key `wall_alpha`) for α = 10, 3, 2, 1, 0.5, 0.3, 0.1, the values in the paper's tables.
 
 ## Run
 
@@ -26,9 +26,9 @@ For the paper's two finer columns (S = 1486 and 2718), set `n_phi = 19 25 34 46`
 | `kernel`, `wall` | regularized Stokeslet; `wall = z0` adds the wall images |
 | `n_phi` | number of latitude rings; the sphere has S points, h = √(4πa²/S) |
 | `eps_coef_parallel`, `eps_coef_normal` | blob width ε = coef · h^0.9, as in the paper |
-| `alpha` | wall distances d/a = cosh α |
+| `wall_alpha` | wall distances d/a = cosh α (named so as not to clash with the Brinkman `alpha`) |
 | `gmres_tol` | relative tolerance of the iterative solve |
-| `vtk_case` | which distance to write to VTK (index into `alpha`) |
+| `vtk_case` | which distance to write to VTK (index into `wall_alpha`) |
 | `grid_x`, `grid_y`, `grid_z` | evaluation grid for output: min, max, number of points |
 
 ## References

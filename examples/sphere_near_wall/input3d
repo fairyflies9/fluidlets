@@ -14,12 +14,12 @@ radius      = 0.1                 % sphere radius a
 n_phi       = 19 25               % rings of latitude: S = 468 and 812 points (add 34 46 for the finer columns)
 eps_coef_parallel = 0.22          % eps = coef * h^0.9, h = sqrt(4 pi a^2 / S)
 eps_coef_normal   = 0.4
-alpha       = 10 3 2 1 0.5 0.3 0.1  % wall distance d/a = cosh(alpha), the paper's rows
+wall_alpha  = 10 3 2 1 0.5 0.3 0.1  % wall distance d/a = cosh(wall_alpha), the rows of the paper's tables
 gmres_tol   = 1e-8
 }
 
 Output_Info {
-vtk_case    = 1                   % row of the table to write VTK output for (alpha = 1, d/a = 1.5431)
+vtk_case    = 1                   % row of the table to write VTK output for (wall_alpha = 1, d/a = 1.5431)
 grid_x      = -0.4 0.4 41
 grid_y      = 0 0 1
 grid_z      = 0 0.4 21

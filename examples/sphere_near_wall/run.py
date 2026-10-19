@@ -21,10 +21,10 @@ from fluidlets.io import read_input, write_vtp, write_vtr
 here = Path(__file__).parent
 p = read_input(here / "input3d")
 a, mu = p["radius"], p["mu"]
-alphas = np.atleast_1d(p["alpha"])
+alphas = np.atleast_1d(p["wall_alpha"])
 d_over_a = np.cosh(alphas)
 n_phis = np.atleast_1d(p["n_phi"]).astype(int)
-wall = fl.Stokeslet3DWall()
+wall = fl.WallStokeslet3D()
 
 # Exact values. Parallel: O'Neill (1964), as tabulated by Ainley et al. (Table 1).
 ONEILL = dict(zip([10, 3, 2, 1, 0.5, 0.3, 0.1], [1.0000, 1.0591, 1.1738, 1.5675, 2.1515, 2.6475, 3.7863]))

@@ -58,7 +58,7 @@ def _fill_nearest(targets, quad, nearest, eps, block, p, q, K):
                     K[p * i + a, q * j + b] += G[a, b]
 
 
-def nearest_neighbours(quad_points, force_points) -> np.ndarray:
+def nearest_neighbors(quad_points, force_points) -> np.ndarray:
     """Index of the nearest force point for every quadrature point, shape (Q,)."""
     from scipy.spatial import cKDTree
 
@@ -84,7 +84,7 @@ def assemble_nearest(kernel, targets, quad_points, nearest, n_force, eps, mu=1.0
         Collocation points (usually the force points).
     quad_points : (Q, dim) array
     nearest : (Q,) int array
-        From ``nearest_neighbours(quad_points, force_points)``.
+        From ``nearest_neighbors(quad_points, force_points)``.
     n_force : int
         Number of force points N.
     eps : float or (Q,) array

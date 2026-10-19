@@ -1,16 +1,16 @@
 """Fluidlets: regularized fundamental solutions for fluids and fields."""
 from .stokeslet3d import stokeslet3d_velocity
-from .kernels import Stokeslet3D, Stokeslet3DWall
-from .core import assemble, assemble_nearest, evaluate, nearest_neighbours, resistance
+from .kernels import Stokeslet3D, WallStokeslet3D
+from .core import assemble, assemble_nearest, evaluate, nearest_neighbors, resistance
 
 __version__ = "0.0.1"
 __all__ = [
     "stokeslet3d_velocity",
     "Stokeslet3D",
-    "Stokeslet3DWall",
+    "WallStokeslet3D",
     "assemble",
     "assemble_nearest",
-    "nearest_neighbours",
+    "nearest_neighbors",
     "evaluate",
     "resistance",
 ]

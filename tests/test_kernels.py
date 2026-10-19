@@ -6,7 +6,7 @@ import fluidlets as fl
 from fluidlets.kernels.images import image_block, image_velocity_reference
 
 rng = np.random.default_rng(7)
-KERNELS = [fl.Stokeslet3D(), fl.Stokeslet3DWall()]
+KERNELS = [fl.Stokeslet3D(), fl.WallStokeslet3D()]
 
 
 def above_wall(n):
@@ -38,7 +38,7 @@ def test_assemble_matches_evaluate(kernel):
 
 def test_wall_velocity_vanishes():
     wall = np.c_[rng.uniform(-2, 2, (50, 2)), np.zeros(50)]
-    u = fl.evaluate(fl.Stokeslet3DWall(), wall, above_wall(10), rng.normal(size=(10, 3)), 0.1)
+    u = fl.evaluate(fl.WallStokeslet3D(), wall, above_wall(10), rng.normal(size=(10, 3)), 0.1)
     assert np.abs(u).max() < 1e-14
 
 
