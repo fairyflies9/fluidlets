@@ -20,5 +20,9 @@ classifiers = [
   "Topic :: Scientific/Engineering :: Physics",
 ]
 
+[project.optional-dependencies]
+# For running the notebooks in tutorials/ locally and in CI; not needed to use the package.
+tutorials = ["matplotlib>=3.7", "ipykernel>=6", "nbmake>=1.5"]
+
 [project.urls]
 Homepage = "https://github.com/fairyflies9/fluidlets"
