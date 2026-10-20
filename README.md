@@ -25,7 +25,18 @@ Each folder in `examples/` runs with `python run.py` and explains the physics in
 | `sphere_in_brinkman` | drag, torque and flow of a sphere in a porous medium | Cortez, Cummins, Leiderman & Varela (2010), Tables 1–2 and Fig. 4 |
 | `biflagellate_swimmer` | a model alga swimming with two flagella, with movies | Gallagher & Smith (2018), Table II |
 
-Tutorial notebooks are in `tutorials/`.
+## Tutorials
+
+Jupyter notebooks in `tutorials/` teach the method step by step, with the math next to the code. Each one ends with exercises and runs in under a minute.
+
+| | Notebook | What you learn |
+|---|---|---|
+| 01 | [From blob to regularized Stokeslet](tutorials/01_blob_to_stokeslet.ipynb) | how the blob gives the regularized Stokeslet, and how it converges to the singular one |
+| 02 | [Choosing ε](tutorials/02_choosing_eps.ipynb) | how big the blob should be relative to the point spacing |
+| 03 | [Mobility, resistance, and swimming](tutorials/03_mobility_resistance_swimming.ipynb) | forces in or velocities in; walls; a cell that swims by changing its shape |
+| 05 | [Porous media with Brinkmanlets](tutorials/05_porous_media_brinkmanlets.ipynb) | screening, backflow, and the drag on a sphere in a porous medium |
+
+More pictures and a plain-language overview are on the [Fluidlets page](https://fairyflies9.github.io/fluidlets.html) of the Miller Lab website.
 
 ## Install
 
